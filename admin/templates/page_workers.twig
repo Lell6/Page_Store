@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pracownicy</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    </head>
+    <body>
+        <nav class="navbar bg-info">
+            <div class="container-fluid">
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li><a href="loadTemplate_page_orders.php">Zamówienia</a></li>
+                  <li><a href="loadTemplate_page_workers.php">Pracownicy</a></li>
+                  <li><a href="loadTemplate_page_products.php">Towary</a></li>
+                  <li><a href="function_logout.php">Wyloguj</a></li>
+                  <h4 style="position: absolute; right: 20px">{{user.login}} - {{user.privilege}}</h4>
+                </ul>
+              </div>
+            </div>
+        </nav>
+
+        <h3>Pracownicy</h3>
+        <a href="loadTemplate_formPage_add_worker.php">Dodaj pracownika</a>
+        <hr>
+
+
+        <script>
+            $(document).ready(function () {
+                $('#data_table').DataTable();
+            });
+        </script>
+
+        <table class="table table-striped table-hover" id="data_table">
+            <thead>
+                <tr>
+                    {% for key in keys %}
+                        <th scope="col" data-column="{{key}}">{{key}}</th>
+                    {% endfor %}
+                    <th scope="col" data-column="Actions">Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for worker in workers %}
+                    <tr>
+                        <td data-column="Id">{{worker.Id}}</td>
+                        <td data-column="Name">{{worker.Name}}</td>
+                        <td data-column="Surname">{{worker.Surname}}</td>
+                        <td data-column="PhoneNumber">{{worker.PhoneNumber}}</td>
+                        <td data-column="Email">{{worker.Email}}</td>
+                        <td data-column="Login">{{worker.Login}}</td>
+                        <td data-column="Privilege">{{worker.Privilege}}</td>
+                        <td data-column="Status">{{worker.Status}}</td>
+                        <td data-column="Actions" colspan="3">
+                            {% if worker.Status == 'Aktywny' %}
+                                <a href="function_block_worker.php?id={{worker.Id}}">Zablokuj</a>
+                            {% elseif worker.Status == 'Zablokowany' %}
+                                <a href="function_unblock_worker.php?id={{worker.Id}}">Odblokuj</a>
+                            {% endif %}
+
+                            <a href="loadTemplate_formPage_edit_worker.php?id={{worker.Id}}">Edytuj</a>
+                            <a href="function_delete_worker.php?id={{worker.Id}}">Usuń</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

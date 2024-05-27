@@ -1,0 +1,21 @@
+form{
+    position: relative;
+    top: 20px;
+    width: 50%;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+form > *{
+    flex-basis: 100%;
+}
+
+form > label, form > input[type="checkbox"]{
+    flex-basis: 13%;
+}
+
+#image_displayer > img{
+    width: 100px;
+    height: auto;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edytowanie pracownika</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="css/style_admin_search.css">
+        <style>
+            form{
+                position: relative;
+                top: 20px;
+                width: 50%;
+
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            form > *{
+                flex-basis: 100%;
+            }
+
+            form > label, form > input[type="checkbox"]{
+                flex-basis: 13%;
+            }
+
+            #image_displayer > img{
+                width: 100px;
+                height: auto;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h3>Edytowanie pracownika</h3>
+        <h4>Pozostawić pola pustymi jak nie potrzebują zmian</h5>
+        <button onclick="window.location='loadTemplate_page_workers.php'">Wróć</button>
+        <hr>
+
+        <form method="post" action="function_edit_worker.php?id={{worker.Id}}">
+            <label>Imię</label>
+            <input type="text" name="name" placeholder="{{worker.Name}}">
+            
+            <label>Nazwisko</label>
+            <input type="text" name="surname" placeholder="{{worker.Surname}}">
+
+            <label>Email</label>
+            <input type="email" name="email" placeholder="{{worker.Email}}">
+
+            <label>Numer Komórkkowy</label>
+            <input type="text" name="phone" placeholder="{{worker.PhoneNumber}}">
+            <hr>
+            <label>Login</label>
+            <input type="text" name="login" placeholder="{{worker.Login}}">
+            
+            <label>Hasło</label>
+            <div>
+                <input type="password" name="password" placeholder="Hasło" id="password">
+                <button type="button" id="pass_toggler"><i class="material-icons">visibility</i></button>
+            </div>
+
+            <label>Rola</label>
+            <select name="privilege" id="category">
+                <option value="1" {{adminStat}}>Admin</option>
+                <option value="2" {{workerStat}}>Pracownik</option>
+            </select>
+            <input type="submit" value="Zaktualizuj pracownika">
+        </form>
+        <script src="../js/toggle_password_view.js"></script>
+    </body>
+</html>

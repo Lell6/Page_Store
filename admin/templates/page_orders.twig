@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Zamówienia</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    </head>
+    <body>
+        <nav class="navbar bg-info">
+            <div class="container-fluid">
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li><a href="loadTemplate_page_orders.php">Zamówienia</a></li>
+                  <li><a href="loadTemplate_page_workers.php">Pracownicy</a></li>
+                  <li><a href="loadTemplate_page_products.php">Towary</a></li>
+                  <li><a href="function_logout.php">Wyloguj</a></li>
+                  <h4 style="position: absolute; right: 20px">{{user.login}} - {{user.privilege}}</h4>
+                </ul>
+              </div>
+            </div>
+        </nav>
+
+        <h3>Zamówienia</h3>
+        <hr>
+
+        <script>
+            $(document).ready(function () {
+                $('#data_table').DataTable();
+            });
+        </script>
+
+        <table class="table table-striped table-hover" id="data_table">
+            <thead>
+                <tr>
+                    {% for key in keys %}
+                        <th scope="col" data-column="{{key}}">{{key}}</th>
+                    {% endfor %}
+                    <th scope="col" data-column="Actions">Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td data-column="Id">{{order.Id}}</td>
+                        <td data-column="CustomerInfo">{{order.CustomerName}} {{order.CustomerSurname}}</td>
+                        <td data-column="ContactInfo">{{order.PhoneNumber}}, {{order.Email}}</td>
+                        <td data-column="Address">{{order.City}}, {{order.Street}} {{order.HouseNumber}} {{order.ApartmentNumber}}</td>
+                        <td data-column="WholePrice">{{order.WholePrice/100}} zł</td>
+                        <td data-column="WholePrice">{{order.DeliveryPrice/100}} zł</td>
+                        <td data-column="Payment">{{order.Payment}}</td>
+                        <td data-column="Shipment">{{order.Shipment}}</td>
+                        <td data-column="Date">{{order.DateOfSubmission}}</td>
+                        <td data-column="Status">{{order.Status}}</td>
+                        <td data-column="Comments">{{order.Commentary}}</td>
+                        <td data-column="Actions" colspan="3">
+                            {% if order.Status != 'Anulowano' %}
+                                <a href="loadTemplate_page_faktura.php?id={{order.Id}}">Faktura</a><br>
+                            {% else %}
+                                Brak faktury
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edytowanie Towaru</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https:/fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="css/style_admin_form.css">
+        <link rel="stylesheet" href="css/style_loading_bar.css">
+        
+    </head>
+    <body>
+        <div style="display: none" id="loading">
+            <div class="loader"></div>
+            <div class="disabler"></div>
+        </div>
+
+        <h3>Edytowanie towaru</h3>
+        <button  onclick="window.location='loadTemplate_page_products.php'">Wróć</button>
+        <hr>
+        <form method="post" action="function_edit_product.php?id={{product.Id}}" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="{{product.Name}}">
+            <input type="text" name="price" placeholder="{{product.Price}}zł">
+
+            <select name="category" id="category">
+                <option>Kategoria</option>
+                {% set i = 1 %}
+                {% for category in categories %}
+                    <option value="{{i}}"
+                        {% if product.Cathegory == category.Name %}
+                            selected
+                        {% endif %}
+                    >{{category.Name}}</option>
+                    {% set i = i + 1 %}
+                {% endfor %}
+            </select>
+
+            <select name="type" id="type">
+                <option>Rodzaj</option>
+                {% set i = 1 %}
+                {% for type in types %}
+                    <option value="{{i}}"
+                        {% if product.Type == type.Name %}
+                            selected
+                        {% endif %}>{{type.Name}}</option>
+                    {% set i = i + 1 %}
+                {% endfor %}
+            </select>
+            
+            <div>
+                <label>Cechy</label>
+                <button type="button" id="add_feature"><i class="material-icons">add</i></button>
+                <div id="features">
+                    {% set i = 0 %}
+                    {% for feature in features %}
+                        <input type="hidden" name="featureId{{i}}" value="{{feature.Id}}">
+                        <input type="text" placeholder="{{feature.Info}}" name="feature{{i}}">
+                        {% set i = i + 1 %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <select name="tax" id="type">
+                <option>Podatek</option>
+                {% set i = 1 %}
+                {% for tax in taxes %}
+                    <option value="{{i}}"
+                        {% if product.Tax == tax.Value %}
+                            selected
+                        {% endif %}>{{tax.Value}}</option>
+                    {% set i = i + 1 %}
+                {% endfor %}
+            </select>
+
+            <textarea name="description" placeholder="{{product.Description}}"></textarea>
+
+            <div id="image_displayer">
+                {% for image in images %}
+                    <img src="{{image}}?t={{time}}">
+                {% endfor %}
+            </div>
+
+            <input type="file" name="files[]" id="image_adder" multiple accept="image/*">
+            <input type="submit" value="Edytuj towar" id="submit">
+        </form>
+        <script src="js/show_added_images.js"></script>
+        <script src="js/add_new_feature.js"></script>
+        <script src="js/show_loading.js"></script>
+    </body>
+</html>
