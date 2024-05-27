@@ -1,0 +1,4 @@
+podzielić cechę i jej wartośc na osobke inputy - redagowanie, dodawanie produktu -- maybe
+dodać crud do kategorii, cechy, podatku - maybe
+wysyłanie email z odnawianiem statusu zamówienia - maybe
+search button to redirect to search result - maybe

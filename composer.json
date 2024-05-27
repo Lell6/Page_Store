@@ -1,0 +1,6 @@
+{
+    "require": {
+        "twig/twig": "^3.10",
+        "symfony/mailer": "^7.0"
+    }
+}
