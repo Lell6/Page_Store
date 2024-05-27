@@ -1,0 +1,105 @@
+.order_main_content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    position: relative;
+    top: 2em;
+}
+
+.order_details{
+    flex-basis: 55%;
+    height: 500px;
+    padding: 20px;
+    border: 3px solid #99d668;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.order_price{
+    flex-basis: 33%;
+    height: 200px;
+    padding: 20px;
+
+    border: 3px solid #99d668;
+}
+
+.data{
+    width: 100%;
+}
+
+.field{
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    padding: 5px;
+
+    background-color: #bce8d2;
+}
+
+hr{
+    margin: 0;
+    padding: 0;
+    
+    border: 1px solid #99d668;
+}
+
+.field > h3{
+    padding: 0;
+    margin: 10px 0 0 0;
+}
+
+.input_data{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 10px;
+    padding: 5px;
+
+    background-color: #bce8d2;
+}
+
+.input_data > input{
+    width: 40%;
+    height: 30px;
+}
+
+::placeholder {
+    color: #adc19d;
+    font-size: 15px;
+}
+
+.radio > div{
+    flex-basis: 45%;
+}
+
+.radio  > div > input[type="radio"]{
+    width: 30px;
+    height: 30px;
+}
+.radio > div > label{
+    position: relative;
+    top: -10px;
+}
+
+.radio > .button_next{
+    flex-basis: 100%;
+}
+
+.price{
+    display: flex;
+    justify-content: space-between;
+}
+
+.price > *{
+    padding: 0;
+    margin: 3px 0 10px 0;
+}
+
+@media only screen and (width < 1000px){
+    .order_details, .order_price{
+        flex-basis: 100%;
+        width: 100%;
+    }
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Szczegóły zamówienia</title>
+
+        <style>
+            .orderInfo{
+                display: flex;
+                gap: 30px;
+            }
+
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            table, th, tr, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Zamówienie nr {{order.Id}}</h2>
+        <h3>Data złożenia zamówienia: {{order.DateOfSubmission}}</h3>
+        <h3>Cena zamówienia: {{order.WholePrice}} zł</h3>
+
+        <div class="orderInfo">
+            <div>
+                <h3>Dane osobowe</h3>
+                <ul>
+                    <li>{{order.CustomerName}}</li>
+                    <li>{{order.CustomerSurname}}</li>
+                    <li>{{order.PhoneNumber}}</li>
+                    <li>{{order.Email}}</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Adres dostawy</h3>
+                <ul>
+                    <li>{{order.City}}</li>
+                    <li>{{order.Street}}</li>
+                    <li>{{order.HouseNumber}}</li>
+
+                    {% if order.ApartmentNumber != '0' %}
+                        <li>{{order.ApartmentNumber}}</li>
+                    {% else %}
+                        <li>Brak</li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div>
+                <h3>Szczegóły dostawy i opłaty</h3>
+                <ul>
+                    <li>Cena produktów {{order.ProductsPrice}} zł</li>
+                    <li>Cena dostawy {{order.DeliveryPrice}} zł</li>
+                    <li>{{order.Payment}}</li>
+                    <li>{{order.Shipment}}</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Komentarze</h3>
+                <p>{{order.Commentary}}</p>
+            </div>
+        </div>
+
+        <div>
+            <h3>Towary</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nazwa</th>
+                        <th>Rodzaj</th>
+                        <th>Ilość sztuk</th>
+                        <th>Całkowita cena towaru</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td>{{product[1]}}</td>
+                            <td>{{product[3]}}</td>
+                            <td>{{product[4]}}</td>
+                            <td>{{product[5]}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>    
+            </table>
+        </div>
+
+        <form method="post" action="function_confirmOrder.php">
+            <input type="submit" value="Zatwierdź">
+        </form>
+
+        <form method="post" action="function_cancelOrder.php">
+            <input type="submit" value="Anuluj">
+        </form>
+    </body>
+</html>

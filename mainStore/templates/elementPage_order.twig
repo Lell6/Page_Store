@@ -1,0 +1,108 @@
+<form class="order_details" id="form" method="post" action="function_updateOrderStatusInputedData.php">
+    <div class="data">
+        <hr>
+        <div class="field">
+            <h3>Dane Osobowe</h3>
+            <input type="button" class="button_edit" value="Edytuj Dane">
+        </div>
+
+        <div class="input_data" id="person">
+            <input type="text" name="name" id="name" placeholder="Imię*" required>
+            <input type="text" name="surname" id="surname" placeholder="Nazwisko*" required>
+            <input type="text" name="number" id="number" placeholder="Numer komórkowy*" required>
+            <input type="email" name="email" id="email" placeholder="Adres email*" required>
+
+            <input type="button" class="button_next" id="button_person" value="Dalej">
+        </div>
+    </div>
+
+    <div class="data">
+        <hr>
+        <div class="field">
+            <h3>Adresy</h3>
+            <input type="button" class="button_edit" value="Edytuj Dane">
+        </div>
+
+        <div class="input_data" id="address">
+            <input type="text" name="city" id="city" placeholder="Miasto*" required>
+            <input type="text" name="street" id="street" placeholder="Ulica*" required>
+            <input type="text" name="num_bud" id="num_bud" placeholder="Numer Budynku*" required>
+            <input type="text" name="num_apart" id="num_apart" placeholder="Numer mieszkania">
+
+            <input type="button" class="button_next" id="button_address" value="Dalej">
+        </div>
+    </div>
+
+    <div class="data">
+        <hr>
+        <div class="field">
+            <h3>Sposób dostawy</h3>
+            <input type="button" class="button_edit" value="Edytuj Dane">
+        </div>
+
+        <div class="input_data radio" id="shipment">
+            <div>
+                <input type="radio" name="ship" id="shop" value="5" required>
+                <label for="shop">Odbiór osobisty</label>
+            </div>                        
+            <div>
+                <input type="radio" name="ship" id="home_dhl" value="2" required>
+                <label for="home_dhl">Dostawa DHL - na adres</label>
+            </div>                        
+            <div>
+                <input type="radio" name="ship" id="home_dpd" value="3" required>
+                <label for="home_dpd">Dostawa DPD - na adres</label>
+            </div>                        
+            <div>
+                <input type="radio" name="ship" id="inpost" value="4" required>
+                <label for="inpost">Inpost Paczkomat</label>
+            </div>    
+
+            <textarea id="comm" name="commentary" rows="5" cols="75" style="resize: none" placeholder="Komentarz do dostawy" maxlength="75"></textarea>
+            <input type="button" class="button_next"  id="button_shipment" value="Dalej">
+        </div>
+    </div>
+
+    <div class="data">
+        <hr>
+        <div class="field">
+            <h3>Płatność</h3>
+            <input type="button" class="button_edit" value="Edytuj Dane">
+        </div>
+        <div class="input_data radio" id="payment">
+            <div>
+                <input type="radio" name="pay" id="cash_shop" value="5" required>
+                <label for="cash_shop">Gotówką za pobraniem</label>
+            </div>                        
+            <div>
+                <input type="radio" name="pay" id="card_shop" value="2" required>
+                <label for="card_shop">Kartą za pobraniem</label>
+            </div>                        
+            <div>
+                <input type="radio" name="pay" id="card_now" value="3" required>
+                <label for="card_now">Przelew</label>
+            </div>                        
+            <div>
+                <input type="radio" name="pay" id="blik_now" value="4" required>
+                <label for="blik_now">Blik</label>
+            </div>                        
+        </div>
+    </div>
+</form>
+
+<div class="order_price">
+    <div class="price">
+        <h4>Cena towarów</h4>
+        <h4 id="price_0">{{price[0]/100}}zł</h4>
+    </div>
+    <div class="price">
+        <h4>Koszt dostawy</h4>
+        <h4 id="price_1">{{price[1]/100}}zł</h4>
+    </div>
+    <div class="price">
+        <h2>Całość</h2>
+        <h2 id="price_2">{{price[2]/100}}zł</h2>
+    </div>
+
+    <button type="submit" form="form">Przejdź do podtwierdzenia zamówienia</button>
+</div>

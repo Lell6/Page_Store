@@ -1,0 +1,57 @@
+
+<div class="header" style="grid-column: 1 / -1;">
+    {% if cathegory == "" %}
+        <h2 id="info">Popularne towary</h2>
+    {% else %}
+        <h2 id="info">Wyniki wyszukiwania dla {{cathegory}}
+        {% if feature != "" %}
+             i {{feature}}
+        {% endif %}
+        </h2>
+    {% endif %}
+
+    {% if cathegory != "" %}
+        <div class="dataManipulator">
+            <form method="post" action="page_product_list.php?cath={{cathegory}}" id="filtrForm">
+                <div>
+                    <label>Zakres cen</label>
+                    <input type="text" name="min_price" id="min" value="{{min}}">
+                    -
+                    <input type="text" name="max_price" id="max" value="{{max}}">
+                    zł.
+                </div>
+                <div>
+                    <select id="sorting" name="sortMethod">
+                        {% if sort == 'grow' %}
+                            <option value="grow" selected>Cena rosnąco</option>
+                            <option value="shrink">Cena malejąco</option>
+                        {% else %}
+                            <option value="grow" selected>Cena rosnąco</option>
+                            <option value="shrink" selected>Cena malejąco</option>
+                        {% endif %}
+                    </select>
+                    <input type="submit" value="Filtruj">
+                </div>
+            </form>  
+        </div>
+    {% endif %}
+    <hr>
+</div>
+
+{% for product in products %}
+    <div class="towar" onclick="window.location='page_product.php?id={{product.Id}}'">
+        <div class="image_container">
+            <img srcset="images/products_images/{{product.Id}}/1_medium.webp" loading="eager" t="{{time}}">
+        </div>
+
+        <div class="towar_rate_price">
+            <p>{{product.Name}}</p>
+            <p class="towar_info">{{(product.Price / 100)|number_format(2, '.', ',')}} zł</p>
+        </div>
+
+        <form class="add_to_cart" method="post" action="function_add_to_cart.php?id={{product.Id}}">
+            <input type="hidden" name="url" value="{{link}}">
+            <input type="submit" value="Dodaj do koszyka">
+        </form>
+    </div>
+{% endfor %}

@@ -1,0 +1,56 @@
+<div class="towar_main_content">
+    <div class="towar_images">
+        <div class="main_image">
+            <img srcset="images/products_images/{{product.Id}}/1.jpg">
+        </div>
+
+        <div class="image_list">
+            {% for image in images %}
+                <img srcset="{{image}}">
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="towar_info">
+        <hr>
+        <div class="towar_name_rate">
+            <h3>{{product.Name}}</h3>
+        </div>
+
+        <div class="towar_price">
+            <h1>{{product.Price}}<h1> 
+            <h1>zł</h1>
+        </div>
+        
+        <div class="towar_add_to_cart">
+            <hr>
+            <form method="post" action="function_add_to_cart.php?id={{product.Id}}">
+                <input type="hidden" name="url" value="{{link}}">
+                <div class="set_category">
+                    <select name="cecha">
+                        <option value="0">Wybierz opcję</option>';
+
+                        {% for type in features %}
+                            <option value="{{type}}">{{type}}</option>';  
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="input_number">
+                    <input name="count" type="text" id="field" value="1" min="1" max="20">
+                    <input type="button" id="minus" class="number_minus" value="-">
+                    <input type="button" id="plus" class="number_plus" value="+">
+                </div>
+
+                <input type="submit" value="Dodaj do koszyka">
+            </form>
+        </div>
+
+        <div class="towar_description">
+            <hr>
+            <h3>Opis towaru</h3>
+            <p>{{product.Description}}</p>
+        </div>
+
+    </div>
+</div>

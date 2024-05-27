@@ -1,0 +1,19 @@
+.main_content{
+    position: relative;
+    top: 1em;
+}
+
+.oferta{
+    display: block;
+    height: 500px;
+}
+
+.main_content > .towar_list{
+    position: relative;
+    top: 3em;
+}
+
+.oferta > img{
+    height: 100%;
+    width: 100%;
+}

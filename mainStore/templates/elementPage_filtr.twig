@@ -1,0 +1,13 @@
+<div class="filtr">
+    <h3>Filtry wyszukiwania</h3>
+    <hr>
+
+    {% for key, values in features %}
+        <h4>{{key}}</h4>
+        <div class="cecha_list">
+            {% for value in values %}
+                <button class="cecha_name" onclick="window.location='page_product_list.php?cath={{cathegory}}&feature={{value}}'">{{value}}</button>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>

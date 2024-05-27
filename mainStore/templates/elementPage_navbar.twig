@@ -1,0 +1,31 @@
+<div class="navbar">     
+    <div class="topbar">
+        <a href="index.php"><img src="images/logo.jpg" width="100" height="50" alt="logo"></a>
+    
+        <form class="search">
+            <input type="search" class="searchbar" id="searchBar">
+            <button type="submit" class="search_button"><i class="material-icons">search</i></button>
+
+            <div id="searchResult">
+                
+            </div>
+        </form>
+    
+        <div class="buttons">
+            <a href="function_loginCheckLogged.php" class="button login">
+                <i class="material-icons">person</i>
+                <p>Zaloduj się</p>
+            </a>
+            <a href="page_cart.php" class="button cart">
+                <i class="material-icons">shopping_cart</i>
+                <p id="navbar_count">Koszyk ({{items}})</p>
+            </a>
+        </div>
+    </div>
+
+    <div class="category_bar">
+        {% for cathegory in cathegories %}
+            <a href="page_product_list.php?cath={{cathegory.Name}}">{{cathegory.Name}}</a>
+        {% endfor %}
+    </div>
+</div>

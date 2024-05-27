@@ -1,0 +1,35 @@
+.filtr{
+    position: relative;
+    top: 5em;
+    
+    width: 20%;
+}
+
+.filtr > h4{
+    padding: 0;
+    margin: 30px 0 5px 0;
+}
+
+.cecha_list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 75px);
+    grid-template-rows: 30px;
+    grid-auto-rows: 30px;
+    gap: 5px;
+}
+
+.cecha_name{
+    background-color: white;
+    border: solid 2px #99d668;
+    width: auto;
+}
+
+.cecha_name:hover{
+    background-color: #eaf3be;
+}
+
+@media only screen and (width < 1000px){
+    .filtr{
+        display: none;
+    }
+}

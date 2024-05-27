@@ -1,0 +1,143 @@
+.cart_main_content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    position: relative;
+    top: 2em;
+}
+
+.towar_list{
+    width: 63%;
+    border: 3px solid #99d668;
+}
+
+.towar_list > *{
+    padding: 10px;
+}
+
+.price_result{
+    width: 33%;
+    border: 3px solid #99d668;
+}
+
+.back_button{
+    display: inline;
+    width: 30%;
+    height: 50px;
+}
+
+.towar{
+    padding-bottom: 10px;
+    display: flex;
+    gap: 3em;
+}
+
+.towar > img:hover{
+    cursor: pointer;
+}
+
+.towar > img{
+    width: 100px;
+    height: auto;
+}
+
+.towar_info{
+    width: 100%;
+    display: flex;
+    
+    border: 1px solid #99d668;
+    padding: 3px;
+}
+
+.towar_name_cecha_price{
+    width: 100%;
+}
+
+.towar_num{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="number"]{
+    width: 50px;
+    font-size: 25px;
+}
+
+.towar_name_cecha_price > *{
+    margin: 0;
+    padding: 0;
+}
+
+.price_info{
+    padding: 10px;
+}
+
+.price{
+    display: flex;
+    justify-content: space-between;
+}
+
+.price > *{
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.price_info > input{
+    width: 100%;
+    height: 30px;
+}
+
+h3{
+    padding: 0 0 0 10px;
+}
+
+.payment{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.payment > img{
+    width: 20%;
+    height: 20%;
+
+    margin: 2px;
+}
+
+.payment > h3{
+    width: 100%;
+    padding: 0;
+}
+
+#emptyCart{
+    display: block;
+}
+
+@media only screen and (width < 1000px){
+    .cart_main_content{
+        display: block;
+    }
+
+    .towar_list{
+        width: 100%;
+    }
+
+    .price_result{
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .back_button{
+        width: 100%;
+    }
+
+    .payment > img{
+        width: 70px;
+    }
+
+    .payment > h3{
+        margin-bottom: 2px;
+    }
+}

@@ -1,0 +1,82 @@
+
+<div class="cart_main_content">
+    <div class="towar_list">
+        <div class="cart_name">
+            <h3>Koszyk</h3>
+            <hr>
+        </div>
+
+        {% for product in products %}
+            <div class="towar" id="{{product[0]}}">
+                <img src="images/products_images/{{product[0]}}/1_medium.webp" onclick="window.location='page_product.php?id={{product[0]}}'">
+
+                <div class="towar_info">
+                    <div class="towar_name_cecha_price">
+                        <h5>{{product[1]}}</h5>
+                        <h5>{{product[3]}}</h5>
+                        <h5>{{product[2]/100}} zł</h5>
+                    </div>
+
+                    <form class="towar_num">
+                        <h4 id="counted_price_{{product[0]}}">{{product[5]/100}}zł</h4>
+                        <div class="input_num">
+                            <input type="number" min="0" value="{{product[4]}}" id="input_{{product[0]}}">
+                        </div>
+
+                        <button type="button" class="remove" id="button_{{product[0]}}"><i class="material-icons">delete</i></button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div id="emptyCart" style="display: none">
+            <h2>Nie masz jeszcze towarów w koszyku - dodaj coś</h2>
+        </div>  
+        <input type="button" class="back_button" onclick="history.back()" value="Kontynuuj zakupy">
+    </div>    
+
+    <div class="price_result">
+        <h3>Podsumowanie</h3>
+        <hr>
+
+        <div class="price_info">
+            <div class="price">
+                <h4>Cena towarów</h4>
+                <h4 id="products_price">{{price[0]/100}}zł</h4>
+            </div>
+            <div class="price">
+                <h4>Koszt dostawy</h4>
+                <h4 id="delivery">{{price[1]/100}}zł</h4>
+            </div>
+            <div class="price">
+                <h2>Całośc</h2>
+                <h2 id="whole_price">{{price[2]/100}}zł</h2>
+            </div>
+
+            <form method="Post" action="function_updateOrderStatus.php">
+                <input type="submit" value="Przejdź do wprowadzenie danych">
+            </form>
+        </div>
+
+        <div class="payment">
+            <h3>Metody płatności</h3>
+            <img src="images/payment_images/1.jpg">
+            <img src="images/payment_images/2.jpg">
+            <img src="images/payment_images/1.jpg">
+            <img src="images/payment_images/2.jpg">
+            <img src="images/payment_images/2.jpg">
+            <img src="images/payment_images/1.jpg">
+        </div>
+
+        <script>
+            var products_price = document.getElementById("products_price");
+            if(products_price.innerHTML === "0,00zł" || products_price.innerHTML === "0.00zł"){
+                emptyCart.style.display = 'block';
+            }
+            else{
+                emptyCart.style.display = 'none';
+            }
+            emptyCart.offsetHeight;
+        </script>
+    </div>
+</div>
